@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GiffGaff</string>
+    <string name="welcome">Use the buttons below to manage the GiffGaff Internet / MMS settings.</string>
+    <string name="add_giffgaff">Add GiffGaff APN</string>
+	<string name="delete_giffgaff">Delete GiffGaff APN</string>
+    <string name="delete_others">Delete other APNs</string>
+    <string name="giffgaff_found_not_default">Congratulations! You have the GiffGaff APN settings, but GiffGaff is not the default APN. You should set GiffGaff as the default APN.</string>
+    <string name="giffgaff_found_default">Congratulations! \nYou are all set for MMS and Internet.</string>
+    <string name="giffgaff_not_found">You dont have any GIffGaff ANP settings, hit \"Add GiffGaff APN\" below to get going."</string>
+    <string name="apply_giffgaff">Set GiffGaff as default</string>
+    <string name="add_notification">GiffGaff APN has been added!</string>
+    <string name="add_failed_notification">Sorry, failed to create GiffGaff APN :(</string>
+	<string name="exists_notification">GiffGaff APN already exists"</string>
+    <string name="set_default_notification">GiffGaff APN has been set as default!</string>
+   	<string name="set_default_failed_notification">Oops, GiffGaff APN could not be set as default</string>     
+	<string name="other_deleted_notification">%1$d unused APNs were deleted!</string>
+	<string name="other_not_found_notification">No other APNs were found</string>
+	<string name="show_apns">Show APNS</string>
+	<string name="confirm_delete_title">Are you sure?</string>
+	<string name="confirm_delete_message">Delete the APN\'s : %1$s ? </string>
+	<string name="yes">Yes</string>
+	<string name="no">no</string>
+	<string name="recommend_delete">You have other APN\'s that may conflict and cause 3G problems, you should delete the other APNs.</string>
+	<string name="confirm_delete_giff_message">Are you sure you want to delete the GiffGaff APN?</string>
+</resources>
+
+
+
+	
+    
+    
+    

@@ -1,0 +1,15 @@
+<resources>
+  <!-- Base application theme is the default theme. -->
+  <style name="Theme" parent="android:Theme">
+  </style>
+
+  <!-- Variation on our application theme that has a translucent
+ background. -->
+  <style name="Theme.Black">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:colorForeground">#fff</item>
+  </style>
+
+
+
+</resources>

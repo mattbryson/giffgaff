@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+ 
+ 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	
+    >
+       
+	    <ImageView
+	    	android:src="@drawable/logo"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:padding="10dp"
+	    />
+	    
+		<TextView  
+			android:id="@+id/welcomeText"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:padding="10dp"
+		    android:textColor="#ffb621"
+		    />
+		    
+		 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    	android:orientation="vertical"
+		    	android:layout_width="fill_parent"
+		    	android:layout_height="fill_parent"
+		    	android:background="@drawable/background"
+		    	android:padding="10dp"
+		    >  
+		    
+		       
+		   <TextView  
+			android:id="@+id/infoText"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:paddingBottom="10dp"
+		    
+		    />
+		    
+			     
+			   <Button android:id="@+id/addButton"
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:layout_alignParentBottom="true"
+		    		android:text="@string/add_giffgaff" 
+		    		android:onClick="addButtonOnClick"
+		    		/>
+		    	 	 
+		    	 <Button android:id="@+id/setAsDefaultButton"
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:layout_alignParentBottom="true"
+		    		android:text="@string/apply_giffgaff" 
+		    		android:onClick="setDefaultOnClick"
+		    		/>	
+		    	
+		    	<Button android:id="@+id/deleteButton"
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:layout_alignParentBottom="true"
+		    		android:text="@string/delete_giffgaff" 
+		    		android:onClick="deleteButtonOnClick"
+		    		/>
+		    		
+		    	<Button android:id="@+id/deleteOtherButton"
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:layout_alignParentBottom="true"
+		    		android:text="@string/delete_others" 
+		    		android:onClick="deleteOthersButtonOnClick"
+		    		/>
+		    		
+		    		
+		    	<Button android:id="@+id/showAPNSButton"
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="wrap_content"
+		    		android:layout_alignParentBottom="true"
+		    		android:text="@string/show_apns" 
+		    		android:onClick="showAPNSButtonOnClick"
+		    		/>	
+    
+	     </LinearLayout>
+     </LinearLayout>
+</LinearLayout>
