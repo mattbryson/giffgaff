@@ -1,16 +1,14 @@
 package com.skinkers.giffgaffAPN;
 
-import com.skinkers.helloandroid.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +20,15 @@ public class GiffGaff extends Activity
     private Button addButton;
     private Button deleteButton;
     private Button deleteOtherButton;
-    private TextView welcomeText;
     private TextView infoText;
+    private TextView statusText;
+    private ImageView statusIcon;
+    
+   
+    
+    private static final int STATUS_NOT_CONNECTED = 1;
+    private static final int STATUS_POSSIBLE_CONFLICT = 2;
+    private static final int STATUS_CONNECTED = 3;
     
     /** Called when the activity is first created. */
     @Override
@@ -35,19 +40,19 @@ public class GiffGaff extends Activity
         this.setContentView( R.layout.main );
         
         //Get UI elements
-        this.welcomeText = (TextView) this.findViewById(R.id.welcomeText);
         this.infoText = (TextView) this.findViewById(R.id.infoText);
+        this.statusText = (TextView) this.findViewById(R.id.statusInfo);
         this.setAsDefaultButton = (Button) this.findViewById(R.id.setAsDefaultButton);
         this.addButton = (Button) this.findViewById(R.id.addButton);
         this.deleteButton = (Button) this.findViewById(R.id.deleteButton);
         this.deleteOtherButton = (Button) this.findViewById(R.id.deleteOtherButton);
+        this.statusIcon = (ImageView) this.findViewById(R.id.statusIcon );
         
         
-        this.welcomeText.setText( R.string.welcome );
+       
         
         checkState();
         
-       
         
        
         
@@ -71,53 +76,82 @@ public class GiffGaff extends Activity
     	//Check if we have a giff gaff APN
         int id = GiffGaffAPN.getGiffGaffAPNID(this);
         
-        if (GiffGaffAPN.getOtherAPNNames(this).length()==0)
-        {
-        	deleteOtherButton.setVisibility(View.GONE);
-        	
-        }
-        else
-        {
-        	this.infoText.setText( R.string.recommend_delete );
-        	deleteOtherButton.setVisibility(View.VISIBLE);
-        }
+        addButton.setVisibility(View.GONE);
+        setAsDefaultButton.setVisibility(View.GONE);
+		deleteOtherButton.setVisibility(View.GONE);
+		deleteButton.setVisibility(View.GONE);
         
     	//Update UI
         if ( id > -1 )
         {
         	if (GiffGaffAPN.isGiffGaffDefault(this))
         	{
-        		this.infoText.setText( R.string.giffgaff_found_default );
-        		setAsDefaultButton.setVisibility(View.GONE);
+        		if (GiffGaffAPN.getOtherAPNNames(this).length()==0)
+                {
+        			this.infoText.setText( R.string.giffgaff_found_default );
+        			setStatus(STATUS_CONNECTED);
+        		}
+                else
+                {
+                	setStatus(STATUS_POSSIBLE_CONFLICT);
+                	this.infoText.setText( R.string.recommend_delete );
+                	deleteOtherButton.setVisibility(View.VISIBLE);
+                }
         	}
         	else
         	{
+        		setStatus(STATUS_NOT_CONNECTED);
         		this.infoText.setText( R.string.giffgaff_found_not_default );
         		setAsDefaultButton.setVisibility(View.VISIBLE);
         	}
         	
-        	
-        	addButton.setVisibility(View.GONE);
         	deleteButton.setVisibility(View.VISIBLE);
         }
         else
         {
         	this.infoText.setText( R.string.giffgaff_not_found );
-        	
         	addButton.setVisibility(View.VISIBLE);
         	
-        	setAsDefaultButton.setVisibility(View.GONE);
-        	deleteButton.setVisibility(View.GONE);
+        	setStatus(STATUS_NOT_CONNECTED);
         }
-        
-        
-        
-       
-        
     }
     
     
-    public void addButtonOnClick(View view)
+    private void setStatus(int status) 
+    {
+		switch (status)
+		{
+			case STATUS_CONNECTED :
+				statusText.setText( R.string.status_1 );
+				statusText.setTextColor( this.getResources().getColor( R.color.status_1_col ));
+				statusIcon.setImageResource( R.drawable.apn_status_1 );
+				
+			break;
+			 
+			case STATUS_POSSIBLE_CONFLICT :
+				statusText.setText( R.string.status_2 );
+				statusText.setTextColor( this.getResources().getColor(  R.color.status_2_col ));
+				statusIcon.setImageResource( R.drawable.apn_status_2 );
+			break;
+			
+			case STATUS_NOT_CONNECTED :
+				statusText.setText( R.string.status_3 );
+				statusText.setTextColor( this.getResources().getColor( R.color.status_3_col ));
+				statusIcon.setImageResource( R.drawable.apn_status_3 );
+			break;
+			
+		
+			
+			
+		}
+		
+	}
+
+
+
+
+
+	public void addButtonOnClick(View view)
     {
     	 int id = GiffGaffAPN.getGiffGaffAPNID(this);
     	 

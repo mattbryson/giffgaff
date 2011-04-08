@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.skinkers.helloandroid"
+      package="com.skinkers.giffgaffAPN"
       android:versionCode="1"
       android:versionName="1.0">
     <uses-sdk android:minSdkVersion="8" />
@@ -8,8 +8,9 @@
     <uses-permission android:name="android.permission.WRITE_APN_SETTINGS"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     
+     
 	<application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@style/Theme.Black">
-        <activity android:name="com.skinkers.giffgaffAPN.GiffGaff"
+        <activity android:name="GiffGaff"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,11 +18,26 @@
             </intent-filter>
         </activity>
         
-         <receiver android:name="com.skinkers.giffgaffAPN.GiffGaffBalanceWidgetProvider" >
+         
+         <receiver android:name="com.skinkers.giffgaffAPN.widget.BagWidgetProvider" android:label="@string/widget_bag">
     		<intent-filter>
         		<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
     		</intent-filter>
-    		<meta-data android:name="android.appwidget.provider" android:resource="@xml/giffgaffbalance" />
+    		<meta-data android:name="android.appwidget.provider" android:resource="@xml/giffgaff_bag_balance" value="1"/>
+		</receiver>
+		
+		 <receiver android:name="com.skinkers.giffgaffAPN.widget.CallsWidgetProvider" android:label="@string/widget_calls">
+    		<intent-filter>
+        		<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    		</intent-filter>
+    		<meta-data android:name="android.appwidget.provider" android:resource="@xml/giffgaff_call_balance" value="2"/>
+		</receiver>
+		 
+		<receiver android:name="com.skinkers.giffgaffAPN.widget.TextsWidgetProviderWidgetProvider" android:label="@string/widget_texts">
+    		<intent-filter>
+        		<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    		</intent-filter>
+    		<meta-data android:name="android.appwidget.provider" android:resource="@xml/giffgaff_text_balance" value="2"/>
 		</receiver>
 
     </application>

@@ -8,25 +8,34 @@ import android.database.SQLException;
 import android.net.Uri;
 import android.util.Log;
 
+
 public class GiffGaffAPN 
 {
 	private static final Uri APN_TABLE_URI = Uri.parse("content://telephony/carriers");
 	private static final Uri PREFERRED_APN_URI = Uri.parse("content://telephony/carriers/preferapn");  
-	private static final Uri CURRENT_APN_URI = Uri.parse("content://telephony/carriers/current");  
-      
+	  
+       
     
 	private static final String APN_NAME = "giffgaff";
 	private static final String APN = "giffgaff.com";
 	private static final String APN_USER = "giffgaff";
 	private static final String APN_PASSWORD = "password";
 	
-	private static final String APN_MMC = "234";
+	
+	
+	private static final String APN_MCC = "234";
 	private static final String APN_MNC = "10";
+
+	//Testing for emulator
+	//private static final String APN_MCC = "310";
+	//private static final String APN_MNC = "260";
+	
+	
 	private static final String APN_MMSC = "http://mmsc.mediamessaging.co.uk:8002";
 	private static final String APN_MMSPROXY = "193.113.200.195";
 	private static final String APN_MMSPORT = "8080";
      
-    private static final String TAG = "HelloGiffGaffAPN";
+    private static final String TAG = "GiffGaffAPN";
 	
 	/**
      * Creates the GiffGaff APN entry, and sets it as default.
@@ -53,7 +62,7 @@ public class GiffGaffAPN
     	
     	ContentResolver resolver = context.getContentResolver();
     	
-    	int count = resolver.delete( APN_TABLE_URI , "apn == '"+APN+"'", null );
+    	int count = resolver.delete( APN_TABLE_URI , "apn == '"+APN+"' and current IS NOT NULL", null );
     	
     	if (count>0)	
     		return true;
@@ -87,21 +96,10 @@ public class GiffGaffAPN
         ContentValues values = new ContentValues();
        
         
-        /*
-         * The following three field values are for testing in Android emulator only
-         * The APN setting page UI will ONLY display APNs whose 'numeric' filed is 
-         * TelephonyProperties.PROPERTY_SIM_OPERATOR_NUMERIC.
-         * On Android emulator, this value is 310260, where 310 is mcc, and 260 mnc.
-         * With these field values, the newly added apn will appear in system UI.
-         */
-       // values.put("mcc", "310");
-       // values.put("mnc", "260");
-        values.put("numeric", "310260");
-        
         //Actual giff gaff details..
-        values.put("mcc",APN_MMC);
+        values.put("mcc",APN_MCC);
         values.put("mnc",APN_MNC);
-        
+        values.put("numeric", APN_MCC + APN_MNC);
         values.put("name",APN_NAME);
         values.put("apn",APN);
         values.put("user",APN_USER);
@@ -111,6 +109,10 @@ public class GiffGaffAPN
         values.put("mmsproxy",APN_MMSPROXY);
         values.put("mmsport",APN_MMSPORT);
        
+
+        
+        
+        
         
         Cursor c = null;
         try
@@ -146,7 +148,7 @@ public class GiffGaffAPN
     	
     	try
         {
-    		Cursor c = resolver.query(APN_TABLE_URI, new String[] {"_id"}, "apn == '"+APN+"'", null, null);
+    		Cursor c = resolver.query(APN_TABLE_URI, new String[] {"_id"}, "apn == '"+APN+"' and current IS NOT NULL", null, null);
     		
             if(c != null && c.getCount() > 0)
             {
@@ -247,7 +249,7 @@ public class GiffGaffAPN
     	
     	try
         {
-    		Cursor c = resolver.query(APN_TABLE_URI, new String[] {"name"}, "apn != '"+APN+"'", null, null);
+    		Cursor c = resolver.query(APN_TABLE_URI, new String[] {"name"}, "apn != '"+APN+"' and current IS NOT NULL", null, null);
     		
             if(c != null && c.getCount() > 0)
             {
@@ -282,7 +284,7 @@ public class GiffGaffAPN
     {
     	ContentResolver resolver = context.getContentResolver();
     	
-    	int count = resolver.delete( APN_TABLE_URI , "apn <> '"+APN+"'", null );
+    	int count = resolver.delete( APN_TABLE_URI , "apn <> '"+APN+"' and current IS NOT NULL", null );
     	
     	return count;
     }
