@@ -1,4 +1,4 @@
-package com.skinkers.giffgaffAPN;
+package com.skinkers.giffgaffBalance;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -36,6 +36,7 @@ public class GiffGaffAPN
 	private static final String APN_MMSPORT = "8080";
      
     private static final String TAG = "GiffGaffAPN";
+	private static final String CONFLICTING_APNS = "(apn=='idata.o2.co.uk' OR apn=='mobile.o2.co.uk' OR apn=='wap.o2.co.uk' OR apn=='payandgo.o2.co.uk') and current IS NOT NULL";
 	
 	/**
      * Creates the GiffGaff APN entry, and sets it as default.
@@ -76,7 +77,7 @@ public class GiffGaffAPN
      */
     public static int removeOtherAPNs(Context context)
     {
-    	 return deleteOtherAPNS(context);
+    	 return deleteConflictingAPNS(context);
     }
     
     
@@ -242,14 +243,14 @@ public class GiffGaffAPN
         return res;
     }
     
-    public static String getOtherAPNNames(Context context)
+    public static String getConflictingAPNNames(Context context)
     {
     	ContentResolver resolver = context.getContentResolver();
     	String names = "";
-    	
+    	 
     	try
         {
-    		Cursor c = resolver.query(APN_TABLE_URI, new String[] {"name"}, "apn != '"+APN+"' and current IS NOT NULL", null, null);
+    		Cursor c = resolver.query(APN_TABLE_URI, new String[] {"name"}, CONFLICTING_APNS, null, null);
     		
             if(c != null && c.getCount() > 0)
             {
@@ -274,17 +275,17 @@ public class GiffGaffAPN
         }
     	
     	return names;
-    }
+    } 
     
     /**
      * Deletes all ANP entries other than the giffgaff entry
      * @return
      */
-    private static int deleteOtherAPNS(Context context)
+    private static int deleteConflictingAPNS(Context context)
     {
     	ContentResolver resolver = context.getContentResolver();
     	
-    	int count = resolver.delete( APN_TABLE_URI , "apn <> '"+APN+"' and current IS NOT NULL", null );
+    	int count = resolver.delete( APN_TABLE_URI , CONFLICTING_APNS, null );
     	
     	return count;
     }

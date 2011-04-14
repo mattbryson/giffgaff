@@ -4,7 +4,7 @@
     <string name="welcome">Use the buttons below to manage the giffgaff Internet / MMS settings.</string>
     <string name="add_giffgaff">Add giffgaff APN</string>
 	<string name="delete_giffgaff">Delete giffgaff APN</string>
-    <string name="delete_others">Delete other APNs</string>
+    <string name="delete_others">Delete conflicting APNs</string>
     <string name="giffgaff_found_not_default">The giffgaff APN settings are not enabled. Press \"Set giffaff as default\" to enable them.</string>
     <string name="giffgaff_found_default">Congratulations! You are all set for MMS and Internet.</string>
     <string name="giffgaff_not_found">You dont have any giffgaff ANP settings, hit \"Add giffgaff APN\" below to get going."</string>
@@ -14,7 +14,7 @@
 	<string name="exists_notification">giffgaff APN already exists"</string>
     <string name="set_default_notification">giffgaff APN has been set as default!</string>
    	<string name="set_default_failed_notification">Oops, giffgaff APN could not be set as default</string>     
-	<string name="other_deleted_notification">%1$d unused APNs were deleted!</string>
+	<string name="other_deleted_notification">%1$d conflicting APNs were deleted!</string>
 	<string name="other_not_found_notification">No other APNs were found</string>
 	<string name="show_apns">Show APNS</string>
 	<string name="confirm_delete_title">Are you sure?</string>
@@ -35,7 +35,7 @@
 	<string name="widget_calls">giffgaff call balance</string>
 	<string name="widget_bag">giffgaff goodybag balance</string>
 	
-	
+	<string name="widget_info">Don\'t forget to check out the widgets for checking balances.</string>
 	
 </resources>
 

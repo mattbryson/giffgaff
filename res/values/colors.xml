@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="status_1_col">#97c03d</color>
+	<color name="status_2_col">#ffa800</color>
+	<color name="status_3_col">#ff0000</color>
+</resources>

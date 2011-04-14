@@ -1,4 +1,4 @@
-package com.skinkers.giffgaffAPN;
+package com.skinkers.giffgaffBalance;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
 
 
 public class GiffGaff extends Activity 
@@ -74,7 +76,7 @@ public class GiffGaff extends Activity
     public void checkState()
     {
     	//Check if we have a giff gaff APN
-        int id = GiffGaffAPN.getGiffGaffAPNID(this);
+        int id = GiffGaffAPN.getGiffGaffAPNID( this );
         
         addButton.setVisibility(View.GONE);
         setAsDefaultButton.setVisibility(View.GONE);
@@ -86,7 +88,7 @@ public class GiffGaff extends Activity
         {
         	if (GiffGaffAPN.isGiffGaffDefault(this))
         	{
-        		if (GiffGaffAPN.getOtherAPNNames(this).length()==0)
+        		if (GiffGaffAPN.getConflictingAPNNames(this).length()==0)
                 {
         			this.infoText.setText( R.string.giffgaff_found_default );
         			setStatus(STATUS_CONNECTED);
@@ -218,7 +220,7 @@ public class GiffGaff extends Activity
     	 new AlertDialog.Builder(this)
          .setIcon(android.R.drawable.ic_dialog_alert)
          .setTitle(R.string.confirm_delete_title)
-         .setMessage( getResources().getString(R.string.confirm_delete_message, GiffGaffAPN.getOtherAPNNames(this) ) )
+         .setMessage( getResources().getString(R.string.confirm_delete_message, GiffGaffAPN.getConflictingAPNNames(this) ) )
          .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
         	 
@@ -243,8 +245,8 @@ public class GiffGaff extends Activity
         
         if (count>0)
         	Toast.makeText(this, getResources().getString(R.string.other_deleted_notification, count), Toast.LENGTH_LONG).show();
-   	 else
-   	 	Toast.makeText(this, R.string.other_not_found_notification, Toast.LENGTH_LONG).show();
+   	 	else
+   	 		Toast.makeText(this, R.string.other_not_found_notification, Toast.LENGTH_LONG).show();
         
         checkState();  
     }

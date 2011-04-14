@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.skinkers.giffgaffAPN"
+      package="com.skinkers.giffgaffBalance"
       android:versionCode="1"
-      android:versionName="1.0">
+      android:versionName="0.1.0">
     <uses-sdk android:minSdkVersion="8" />
     
     <uses-permission android:name="android.permission.WRITE_APN_SETTINGS"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     
-     
-	<application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@style/Theme.Black">
-        <activity android:name="GiffGaff"
+      
+	<application 
+			android:icon="@drawable/icon" 
+			android:label="@string/app_name" 
+			android:theme="@style/Theme.Black"
+			>
+        <activity android:name="com.skinkers.giffgaffBalance.GiffGaff"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,21 +23,21 @@
         </activity>
         
          
-         <receiver android:name="com.skinkers.giffgaffAPN.widget.BagWidgetProvider" android:label="@string/widget_bag">
+         <receiver android:name="com.skinkers.giffgaffBalance.widget.BagWidgetProvider" android:label="@string/widget_bag">
     		<intent-filter>
         		<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
     		</intent-filter>
     		<meta-data android:name="android.appwidget.provider" android:resource="@xml/giffgaff_bag_balance" value="1"/>
 		</receiver>
 		
-		 <receiver android:name="com.skinkers.giffgaffAPN.widget.CallsWidgetProvider" android:label="@string/widget_calls">
+		 <receiver android:name="com.skinkers.giffgaffBalance.widget.CallsWidgetProvider" android:label="@string/widget_calls">
     		<intent-filter>
         		<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
     		</intent-filter>
     		<meta-data android:name="android.appwidget.provider" android:resource="@xml/giffgaff_call_balance" value="2"/>
 		</receiver>
-		 
-		<receiver android:name="com.skinkers.giffgaffAPN.widget.TextsWidgetProviderWidgetProvider" android:label="@string/widget_texts">
+		  
+		<receiver android:name="com.skinkers.giffgaffBalance.widget.TextsWidgetProvider" android:label="@string/widget_texts">
     		<intent-filter>
         		<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
     		</intent-filter>
